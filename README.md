@@ -1,13 +1,13 @@
-# A Simple but Effective MLP Model for AETA Earthquake Prediction
-Following privious work to mitigate the error accumulation between differnt stations, I roughly divide target region into 8 small areas (defined in `area_map.py`). 
+# Automatic Machine Learning (AutoML) with Auto-Sklearn Toolkit for AETA Earthquake Prediction
+Following privious work to mitigate the error accumulation between differnt stations, we roughly divide target region into 8 small areas (defined in `area_map.py`). 
 Thus, the stations in one area will be considered as a group.
-My method is built based on the useful resources provided by privious competitor.
+Our method is built based on the useful resources provided by privious competitor and what we have done in [project 1](https://github.com/juyongjiang/EarthquakePred).
 
 ## Installation
 Clone this project:
 
 ```bash
-git clone git@github.com:juyongjiang/Earthquake_Pred.git
+git clone git@github.com:juyongjiang/AutoML4EarthquakePred.git
 ```
 
 Make sure you have `Python>=3.8` and `Pytorch>=1.8` installed on your machine. 
@@ -22,7 +22,7 @@ conda env create -f requirements.yml
 # After creating environment, activate it
 conda activate automl
 ```
-
+Note some important libraries
 ```
 pip install auto-sklearn
 pip install -U scikit-learn
@@ -83,19 +83,41 @@ $ tree
 ``` 
 
 ## Training and Predition 
-Training a simple but effective MLP model (defined in `model/mlp.py`) on TRAIN data. Since the area feature is contructed by each area, it will have an individual model for each area, named as `saved/eqmodel-area.pth`.
+More advanced automatic machine learning (AutoML) techniques are employed to train three conventional machine learning models, including SVM, Naive Bayes, Decision Trees, and a deep neural network MLP with automatic hyper-parameter tuning (Bayesian Optimization based approach) by Auto-Sklearn on TRAIN data. Since the area feature is contructed by each area, it will have four models for each area, named as `saved/{area_id}_{model_name}_model.pth`. Best hyper-parameters of each model are saved in `best_params/{area_id}_best_params.txt`.
 Please run the following command:
 
 ```bash
-python train.py
+python automl.py 2>&1 | tee automl.log
 ```
 
 In predition stage, the area with the max magnitude will be used as the final prediction result, and the center of the area it belongs to will be the predicted epicenter of earthquake. The submission file `prediction.csv` will be generated automatically. To check the difference between prediction and ground truth, a `ground_truth.csv` file will also be generated.  
 Please run the following command:
 
 ```bash
-python pred.py
+python pred.py 2>&1 | tee pred.log
 ```
 
-## Contact
-Feel free to contact us if there is any question. (Juyong Jiang, jjiang472@connect.hkust-gz.edu.cn;)
+## LICENSE
+```bash
+MIT License
+
+Copyright (c) 2022 Juyong JIANG
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
