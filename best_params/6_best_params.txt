@@ -1,0 +1,4 @@
+svm	1.0	OrderedDict([('C', 12.722208245202765), ('degree', 2), ('gamma', 6.807228086615393), ('kernel', 'rbf')])	100.0	1.0
+naive_bayes	0.5000505050505051	OrderedDict([('var_smoothing', 9.238293796022955)])	50.0	1.0
+decision_trees	0.9479797979797978	OrderedDict([('criterion', 'gini'), ('max_depth', 18), ('min_samples_leaf', 1), ('min_samples_split', 2)])	100.0	1.0
+mlp	0.959225589225589	OrderedDict([('activation', 'logistic'), ('alpha', 0.00023624275776951262), ('learning_rate', 'adaptive'), ('learning_rate_init', 0.01), ('max_iter', 300), ('solver', 'lbfgs')])	100.0	0.75
